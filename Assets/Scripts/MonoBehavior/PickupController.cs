@@ -12,8 +12,11 @@ public class PickupController : MonoBehaviour
     // 以后要改成 player 或 character 的属性
     public float pickupDistance = 7.0f;
 
-    private bool isWalking = false;
-    private GameObject pickupTarget;
+    public bool isWalking = false;
+
+    public GameObject pickupTarget;
+
+    
     private Rigidbody2D playerRigibody;
     private Animator playerAnimator;
 
@@ -43,7 +46,7 @@ public class PickupController : MonoBehaviour
     {
         if(isWalking && pickupTarget != null)
         {
-            WalkAndPickup();
+            WalkAndPickup(pickupTarget);
         }
     }
 
@@ -85,10 +88,10 @@ public class PickupController : MonoBehaviour
         }
         return finalDistance < pickupDistance ? true : false;
     }
-    
+
 
     // 直线走过去并拾取最近物体
-    private void WalkAndPickup()
+    public void WalkAndPickup(GameObject pickupTarget)
     {
         Vector3 positionVector = pickupTarget.transform.position - transform.position;
         // 模拟输入
@@ -129,14 +132,6 @@ public class PickupController : MonoBehaviour
                     var bagUI = GetComponent<BagUIController>();
                     bagUI.itemDictionary[bagItem][0] = Tuple.Create(bagUI.itemDictionary[bagItem][0].Item1, bagUI.itemDictionary[bagItem][0].Item2 + 1);
                     bagUI.RefreshBagItems();
-                    
-                    // 打印观察数据
-                    // string s = "";
-                    // foreach(var a in bag.ItemList)
-                    // {
-                    //     s += a + ": " + a.quantity;
-                    // }
-                    // Debug.Log(s);
 
                     // 这里返回！
                     return;
@@ -157,16 +152,5 @@ public class PickupController : MonoBehaviour
         }
     }
 
-
-    // private void OnTriggerEnter2D(Collider2D collider) 
-    // {
-    //     GameObject colliderObject = collider.gameObject;
-    //     if(colliderObject.CompareTag("Item"))
-    //     {
-    //         ResourceSpawner.resources.Remove(colliderObject);
-    //         Destroy(colliderObject.gameObject);
-    //     }
-    //     Debug.Log(ResourceSpawner.resources.Count);
-    // }
 
 }

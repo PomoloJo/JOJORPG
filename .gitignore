@@ -2,3 +2,7 @@ Library/
 Logs/
 Packages/
 UserSettings/
+Temp/
+obj/
+.vscode/
+Assembly-CSharp.csproj
