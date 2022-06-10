@@ -44,21 +44,6 @@ public class BagUIController : MonoBehaviour
         bagGrid = bagUI.transform.GetChild(0);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        OpenAndCloseBag();
-    }
-
-    public void OpenAndCloseBag()
-    {
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            TipsUIController.Instance.HideTips();
-            bagUI.SetActive(!bagUI.activeSelf);
-        }
-    }
-
 
     // 根据给定的 index、quantity、item 刷新格子
     private void RefreshSlot(int slotIndex, int quantity, Item item)

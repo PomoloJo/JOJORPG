@@ -87,24 +87,6 @@ public class StatusUIController : MonoBehaviour
         toxicElementResistance = playerStatusUI.GetChild(39).GetComponent<TextMeshProUGUI>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        OpenAndCloseBag();
-    }
-
-    public void OpenAndCloseBag()
-    {
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            TipsUIController.Instance.HideTips();
-            playerUI.SetActive(!playerUI.activeSelf);
-            if(playerUI.activeSelf)
-            {
-                Player.Instance.RefreshStatus();
-            }
-        }
-    }
 
     public void RefreshStatusUI()
     {
